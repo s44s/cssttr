@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+
+	<!--- navigation -->
+	<nav>
+		<h1>Main navigation</h1>
+		<ul>
+			<li><a href="#main-content" aria-label="Home, current page">Home</a></li>
+			<li><a href="/products">Products</a>
+				<ul>
+					<li><a href="/products/rock">Rock</a></li>
+					<li><a href="/products/paper">Paper</a></li>
+					<li><a href="/products/scissors">Scissors</a></li>
+				</ul>
+			</li>
+			<li><a href="/about">About</a></li>
+			<li><a href="more.html">Wanna see more?</a></li>
+		</ul>
+	</nav>
+
+	<!-- login -->
+	<h1>Did you enjoy those funny things? And don't you want to stop here?</h1>
+	<h2>Login in to see more..</h2>
+
+	<form action="/" method="post">
+	    <label for="field-email">Email</label>
+	    <input type="email" id="field-email" name="field-email" autocomplete="email" required autofocus>
+
+	    <label for="field-password">Password</label>
+	    <input type="password" id="field-password" name="field-password" required>
+
+	    <input type="checkbox" id="field-stay-logged-in" name="field-stay-logged-in" value="stay-logged-in">
+	    <label for="field-stay-logged-in">Stay logged in</label>
+
+	    <a href="/">Forgot password</a>
+
+	    <button type="submit">Login</button>
+	</form>
+
+</body>
+</html>

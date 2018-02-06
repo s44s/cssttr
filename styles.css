@@ -1,0 +1,134 @@
+/* clear */
+* {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+*:focus {
+	outline:0 !important;
+}
+
+/* layout */
+body {
+	display: grid;
+	grid-template-columns: 1fr 20vw 20vw 20vw 20vw 1fr;
+	grid-template-rows: minmax(10em, auto);
+}
+
+/* header nav menu */
+header {
+	grid-area: header;
+	grid-column: 2 / 6;
+  grid-row: 1;
+}
+
+header nav {
+	margin-top: 1em;
+	margin-bottom: 2em;
+}
+
+header nav ul {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	list-style: none;
+}
+
+header nav li {
+	flex-basis: 15vw;
+	margin-left: 2vw;
+	padding: 1vw;
+	text-align: center;
+	border: 0.5vw solid black;
+}
+
+header nav li:focus-within {
+	animation-name: bounceIn;
+  animation-duration: 450ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+header nav a:active {
+	color:red;
+}
+
+@keyframes bounceIn{
+  0%{
+    opacity: 0;
+    transform: scale(0.3) translate3d(0,0,0);
+  }
+  50%{
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+  80%{
+    opacity: 1;
+    transform: scale(0.89);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1) translate3d(0,0,0);
+  }
+}
+
+header nav li:first-child {
+	margin-top: 1em;
+}
+
+header nav li:nth-of-type(2) ul {
+	/* display: flex; */
+	display: none;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+header nav li:nth-of-type(2) ul li {
+	flex-basis: 1.5em;
+}
+
+header nav li:nth-child(3) {
+	margin-top: 1em;
+}
+
+header nav li:nth-child(4) {
+	margin-top: 2.5em;
+}
+
+header nav a {
+	font-family: monospace;
+	font-size: 1em;
+	text-decoration: none;
+	color: black;
+}
+
+/* css mix-blend-mode */
+section {
+	grid-area: section;
+	grid-column: 3 / 5;
+  grid-row: 2;
+	background-color: grey;
+}
+
+section figure {
+	background: -webkit-linear-gradient(left, #00f 50%, transparent 50.1);
+	background: -o-linear-gradient(left, #00f 50%, transparent 50.1);
+	background: linear-gradient(to right, #00f 50%, transparent 50.1);
+}
+
+figure video {
+	mix-blend-mode: multiply;
+}
+/* article */
+article {
+	grid-area: article;
+	grid-column: 4 / 6;
+  grid-row: 2;
+}
+
+article figure img {
+	width: 30vw;
+	height: auto;
+}

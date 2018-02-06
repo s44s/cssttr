@@ -1,20 +1,61 @@
 <!doctype html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-
     <title>Living Styleguide</title>
-
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
+	<header>
+		<!--- navigation -->
+		<nav>
+			<!-- <h1>Main navigation</h1> -->
+			<ul>
+				<li><a href="#main-content" aria-label="Home, current page">Home</a></li>
+		    <li><a href="ideas.html">Challenges</a>
+					<ul>
+						<li><a href="#first">First Idea</a></li>
+						<li><a href="#second">Second Idea</a></li>
+						<li><a href="#third">Third Idea</a></li>
+		      </ul>
+		    </li>
+		    <li><a href="rating.html">Weekly rate</a></li>
+		    <li><a href="more.html">Wanna see more?</a></li>
+		  </ul>
+		</nav>
+	</header>
 
-<h1>Living Styleguide</h1>
+	<section>
+		<figure>
+			<video loop muted autoplay>
+			  <source src="img/header.mp4" type="video/mp4">
+			  <source src="img/header.ogv" type="video/ogg">
+			</video>
+		</figure>
+	</section>
 
-<!-- place components or patterns here -->
+	<!-- picture with subtitle -->
+	<article>
+		<h2>Something cools with CSS mix-blend-mode</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+		<figure>
+			<!-- Portrait -->
+			<img src="img/cactus_PNG.png" />
+
+			<!-- Landscape -->
+			<!-- <img src="https://vasilis.nl/voto/fotos/klein/161001174911-verhuizen-1280.jpg" alt="A bulldozer transporting a beach house along a sunny beach" /> -->
+			<figcaption>
+				<p>
+					There's also this big and in depth description of the picture. You often see this on newssites or photo blogs. You could also replace the photo with a video if needed.
+				</p>
+				<footer>
+					<time datetime="2017-02-06">6-2-2017</time> © 2017 <a href="https://vasilis.nl">Vasilis van Gemert</a>
+				</footer>
+			</figcaption>
+		</figure>
+	</article>
+
 
 </body>
 </html>
