@@ -1,3 +1,3 @@
-# Components
+# CSS to the Rescue
 
-Rating example makes use of Emoji from: http://emojione.com
+Website live on: [https://s44s.github.io/cssttr/](https://s44s.github.io/cssttr/)
