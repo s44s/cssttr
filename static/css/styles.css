@@ -29,6 +29,12 @@ font-weight: normal;
 src: local('Questrial'), url('../fonts/Questrial-Regular.woff') format('woff');
 }
 
+@font-face {
+	font-family: Ampersand;
+	src: local('Baskerville-Italic'), local('GoudyOldStyleT-Italic'), local('Garamond-Italic'), local('Palatino-Italic');
+	unicode-range: U+26;
+}
+
 /* layout grid */
 body {
 	display: grid;
@@ -237,7 +243,7 @@ article {
 
 article h1 {
 	font-size: 2em;
-	font-family: Questrial;
+	font-family: Ampersand, Questrial;
 	font-weight: bold;
 	color: #F1C25B;
 	margin-bottom: 1em;
