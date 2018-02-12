@@ -60,6 +60,10 @@ header nav {
 	margin-bottom: 2em;
 }
 
+header nav h1 {
+	display: none;
+}
+
 header nav ul {
 	display: flex;
 	flex-direction: row;
