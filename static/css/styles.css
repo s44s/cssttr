@@ -10,7 +10,6 @@ body {
 
 *:focus {
 	outline:0 !important;
-	background-color: var(--mainColor); /* gaat nog aangepast worden */
 }
 
 /* variables */
@@ -61,12 +60,8 @@ body {
 	font-family: Questrial, sans-serif;
 }
 
-p::selection, img::selection {
-	background-color: var(--mainColor);
-}
-
-h1::selection, h2::selection, a::selection, figcaption::selection, footer::selection, time::selection {
-	background-color: var(--secondColor);
+*::selection {
+	background-color: #3E6D3C;
 }
 
 @media screen and (min-width: 50em) {
@@ -82,7 +77,7 @@ header {
 }
 
 header nav {
-	margin-top: 1em;
+	margin-top: 3em;
 	margin-bottom: 2em;
 }
 
@@ -100,6 +95,8 @@ header nav ul {
 	flex-wrap: wrap;
 	justify-content: space-around;
 	list-style: none;
+	align-items: flex-start;
+
 }
 
 header nav li {
@@ -118,8 +115,6 @@ header nav li::before {
   top: 0;
   bottom: 0;
   background-color: rgba(0,10,50,0.2);
-  transition: transform 0.6s cubic-bezier(0,.90,.13,.90);
-  transform: translate3D(0, 0, 0);
 }
 
 header nav li::after {
@@ -130,15 +125,11 @@ header nav li::after {
 	right: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgb(235,235,240);
+	background-color: #ebebf0;
 	z-index: -1;
 }
 
-header nav li:hover::after {
-	transform: translate3D(0.625em, 0, 0);
-}
-
-header nav li:focus-within::after {
+header nav li:hover::before, header nav li:focus-within::before {
 	transform: translate3D(0.625em, 0, 0);
 }
 
@@ -146,12 +137,8 @@ header nav li:active::before {
 	transform: translate3D(0, 0, 0);
 }
 
-header nav li:active{
-	outline: none;
-}
-
 header nav li:active {
-	transform: translate3D(0, 0, 0);
+	outline: none;
 }
 
 header nav li:first-of-type {
@@ -179,16 +166,25 @@ a {
 header nav a {
 	font-family: monospace;
 	font-size: 1.2em;
-	text-transform: uppercase;
 	padding: 1em 1.5em;
-  background-color: #218c74;
-  transition: transform 0.6s cubic-bezier(0,.90,.13,.90);
-  position: relative;
+  background-color: #fbfbfb;
+	display: block;
+  width: 100%;
+  height: 100%;
 }
 
-header nav a:hover, header nav a:focus {
+header nav li:hover a, header nav li:focus-within a {
 	transform: translate3D(0, -0.625em, 0);
-	background-color: #218c74;
+	background-color: white;
+}
+
+header nav li:active a {
+	-webkit-transform: translate3D(0, 0, 0);
+  transform: translate3D(0, 0, 0);
+}
+
+header nav li:hover a, header nav li:focus-within a {
+	background-color: #fbfbfb;
 }
 
 @media screen and (min-width: 50em) {
@@ -204,19 +200,20 @@ header nav a:hover, header nav a:focus {
 
 	header nav li {
 		flex-basis: 30vw !important;
-		margin-left: 1em;
+	}
+
+	header nav li:first-of-type, header nav li:nth-child(2), header nav li:nth-child(3) {
 		margin-right: 1em;
 	}
 
-
-	header nav li:nth-of-type(2) ul {
+	/* header nav li:nth-of-type(2) ul {
 		flex-direction: column;
 		justify-content: flex-start;
 	}
 
 	header nav li:nth-of-type(2) ul li {
 		flex-basis: 1.5em;
-	}
+	} */
 }
 
 /* dropdown menu */
@@ -237,10 +234,6 @@ header nav li ul {
 	margin-top: 1em;
 }
 
-header nav li ul li {
-	background-color: var(--mainColor);
-}
-
 header nav li:focus-within ul {
 	display: block;
 }
@@ -249,25 +242,29 @@ header nav li:focus-within ul a {
 	background-color: rgb(235,235,240);
 }
 
-header nav li ul li:hover::after {
-	transform: translate3D(0, 0, 0) !important;
+header nav li:focus-within ul li::before {
+	background-color: rgb(235,235,240);
+}
+
+header nav li ul li:hover::after{
+	transform: translate3D(0, 0, 0);
 }
 
 header nav li:focus-within ul li:focus-within::after {
 	transform: translate3D(0, 0, 0) !important;
-	color: red;
 }
 
 header nav li:focus-within ul li:focus-within a {
 	font-weight: bold;
 }
-}
+
 
 /* css mix-blend-mode */
 main {
 	grid-row: 2;
 	width: 90vw;
 	margin-left: 5vw;
+	margin-right: 5vw;
 }
 
 section figure {
@@ -383,7 +380,7 @@ article footer a:focus {
 section article {
 	width: 90%;
 	padding: 5%;
-	background-color: rgba(0,0,0,0.01)
+	background-color: rgba(0, 0, 0, 0.025);
 }
 
 section article h1 a {
@@ -429,7 +426,15 @@ progress + ol {
 progress + ol li {
 	flex-basis: 25%;
   position: relative;
-	color: black;
+	color: white;
+}
+
+progress + ol li:first-of-type a {
+	color: var(--mainColor);
+}
+
+progress + ol li a{
+	color: white;
 }
 
 progress + ol li:before {
@@ -595,7 +600,7 @@ button[type='submit'] {
 	.two-column-layout + body main section:nth-of-type(4) {
 		grid-column: 4 / 5;
 		grid-row: 1 / 2;
-		background-color: var(--mainColor);
+		background-image: url('../img/skyscraper.png');
 
 	}
 }
@@ -608,6 +613,102 @@ button[type='submit'] {
 }
 
 /* rating page */
+
+/* login page */
+section > section {
+	padding: 5%;
+	background-color: #fbfbfb;
+}
+
+section > section h2 {
+	margin-bottom: 10%;
+}
+
+label {
+	margin-bottom: 2%;
+	display: block;
+}
+
+input {
+	display: block;
+	width:80%;
+  padding:.25em;
+  margin-bottom: 2em;
+	font-size: 1.25em;
+  transition:all .2s;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+input:valid {
+  border-color: #00ff00;
+	background-color:#fbfbfb;
+}
+
+input:invalid {
+  border-color: red;
+  background-color:#fbfbfb;
+}
+
+input:focus {
+	border: 1px solid black;
+	background-color: white;
+  transform: scale(1.01, 1.01);
+}
+
+input:last-of-type {
+	margin: 0;
+	display: inline;
+	width: auto;
+}
+
+label:last-of-type {
+	display: inline;
+	width: auto;
+}
+
+input:last-of-type:focus{
+	transform: translatex(5px);
+}
+
+input:focus + label {
+	font-weight: bold;
+	display: inline-block;
+	transform: translatex(10px);
+}
+
+label + a {
+	display: inline;
+	width: 40%;
+	float: right;
+}
+
+label + a:focus {
+	font-weight: bold;
+}
+
+a + button {
+	display: block;
+	width: 100%;
+	height: 3em;
+	border: none;
+	margin-top: 10%;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+}
+
+a + button:focus {
+	background-color: var(--mainColor);
+}
+
+@media screen and (min-width: 50em) {
+	section > section {
+		width: 50%;
+		margin-left: 25%;
+	}
+}
+
+
 
 /* keyframes */
 @keyframes shake {
