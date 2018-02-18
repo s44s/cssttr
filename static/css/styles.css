@@ -19,6 +19,8 @@ body {
 	--secondColor: #4D8267;
 	--fontColor: #55555b;
 	--backgroundColor: #6C9584;
+	--cactusGreen: #365904;
+	--florarWhite: florarWhite;
 }
 
 /* fonts */
@@ -88,6 +90,10 @@ header nav h1 {
 	display: none;
 }
 
+ul, li, a {
+	box-sizing: border-box;
+}
+
 header nav ul {
 	display: flex;
 	flex-direction: row;
@@ -97,11 +103,55 @@ header nav ul {
 }
 
 header nav li {
-	flex-basis: 40vw;
-	padding: 2vw;
 	margin-bottom: 1em;
 	text-align: center;
-	border: 1vw solid black;
+	position: relative;
+	z-index: 1;
+}
+
+header nav li::before {
+	content: "";
+  position: absolute;
+  z-index: -1;
+  width: 0.625em;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,10,50,0.2);
+  transition: transform 0.6s cubic-bezier(0,.90,.13,.90);
+  transform: translate3D(0, 0, 0);
+}
+
+header nav li::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(235,235,240);
+	z-index: -1;
+}
+
+header nav li:hover::after {
+	transform: translate3D(0.625em, 0, 0);
+}
+
+header nav li:focus-within::after {
+	transform: translate3D(0.625em, 0, 0);
+}
+
+header nav li:active::before {
+	transform: translate3D(0, 0, 0);
+}
+
+header nav li:active{
+	outline: none;
+}
+
+header nav li:active {
+	transform: translate3D(0, 0, 0);
 }
 
 header nav li:first-of-type {
@@ -109,9 +159,67 @@ header nav li:first-of-type {
 }
 
 header nav li:nth-of-type(2) {
-	flex-basis: 45vw;
+	flex-basis: 65vw;
 }
 
+header nav li:nth-of-type(3) {
+	flex-basis: 38vw;
+}
+
+header nav li:last-of-type {
+	flex-basis: 47vw;
+}
+
+a {
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+header nav a {
+	font-family: monospace;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	padding: 1em 1.5em;
+  background-color: #218c74;
+  transition: transform 0.6s cubic-bezier(0,.90,.13,.90);
+  position: relative;
+}
+
+header nav a:hover, header nav a:focus {
+	transform: translate3D(0, -0.625em, 0);
+	background-color: #218c74;
+}
+
+@media screen and (min-width: 50em) {
+	header {
+		grid-column: 2 / 6;
+		grid-row: 1;
+	}
+
+	header nav ul {
+		flex-wrap: nowrap;
+		align-items: flex-start;
+	}
+
+	header nav li {
+		flex-basis: 30vw !important;
+		margin-left: 1em;
+		margin-right: 1em;
+	}
+
+
+	header nav li:nth-of-type(2) ul {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+
+	header nav li:nth-of-type(2) ul li {
+		flex-basis: 1.5em;
+	}
+}
+
+/* dropdown menu */
 header nav a[href='blog.html']:after {
 	position: relative;
 	left: 4em;
@@ -120,23 +228,8 @@ header nav a[href='blog.html']:after {
 	font-size: 0.5em;
 }
 
-header nav li:focus-within a[href='blog.html']:after {
+header nav li:focus-within a[href='blog.html']::after {
 	content: "\f077";
-}
-
-header nav li:nth-of-type(3) {
-	flex-basis: 35vw;
-}
-
-header nav li:last-of-type {
-	flex-basis: 45vw;
-}
-
-header nav a {
-	font-family: monospace;
-	font-size: 1.2em;
-	text-decoration: none;
-	color: black;
 }
 
 header nav li ul {
@@ -152,75 +245,22 @@ header nav li:focus-within ul {
 	display: block;
 }
 
-@media screen and (min-width: 50em) {
-	header {
-		grid-column: 2 / 6;
-		grid-row: 1;
-	}
-
-	header nav ul {
-		flex-wrap: nowrap;
-		align-items: flex-start;
-	}
-
-	header nav li {
-		flex-basis: 15vw;
-		padding: 1vw;
-		margin-left: 1em;
-		border: 0.5vw solid black;
-	}
-
-	header nav li {
-		margin-right: 1em;
-	}
-
-	header nav li:first-child {
-		margin-top: 1em;
-	}
-
-	header nav li:nth-of-type(2) ul {
-		flex-direction: column;
-		justify-content: flex-start;
-	}
-
-	header nav li:nth-of-type(2) ul li {
-		flex-basis: 1.5em;
-	}
-
-	header nav li:nth-child(3) {
-		margin-top: 1em;
-	}
-
-	header nav li:nth-child(4) {
-		margin-top: 2.5em;
-	}
+header nav li:focus-within ul a {
+	background-color: rgb(235,235,240);
 }
 
-header nav li:focus-within {
-	animation-name: bounceIn;
-  animation-duration: 450ms;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-	box-shadow: 0.5em 0.5em 1em black;
+header nav li ul li:hover::after {
+	transform: translate3D(0, 0, 0) !important;
 }
 
-@keyframes bounceIn{
-  0%{
-    opacity: 0;
-    transform: scale(0.3) translate3d(0,0,0);
-  }
-  50%{
-    opacity: 0.9;
-    transform: scale(1.1);
-  }
-  80%{
-    opacity: 1;
-    transform: scale(0.89);
-  }
-  100%{
-    opacity: 1;
-    transform: scale(1) translate3d(0,0,0);
-  }
+header nav li:focus-within ul li:focus-within::after {
+	transform: translate3D(0, 0, 0) !important;
+	color: red;
+}
+
+header nav li:focus-within ul li:focus-within a {
+	font-weight: bold;
+}
 }
 
 /* css mix-blend-mode */
@@ -324,20 +364,6 @@ article footer a:focus {
   animation-iteration-count: infinite;
 }
 
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
-
 @media screen and (min-width: 50em) {
 	article {
 		grid-column: 3 / 5;
@@ -366,26 +392,73 @@ section article h1 a {
 	line-height: 150%;
 }
 
-progress[value] {
-	-webkit-appearance: none;
-	appearance: none;
-
-	width: 90%;
-	height: 1em;
-	margin-bottom: 2em;
+/* progress bar */
+progress {
+  width: 80%;
+	height: 0.5em;
+	margin-top: 5%;
+	margin-bottom: 1.5em;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 0.5em;
 }
 
-progress[value]::-webkit-progress-bar {
-  background-color: white;
+progress::-webkit-progress-bar {
+  background-color: #f0f0f0;
 	border-radius: 2em;
-  box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.25) inset;
+	box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.25) inset;
 }
 
-progress[value]::-webkit-progress-value {
-	background-color: var(--fontColor);
+progress::-webkit-progress-value {
+	background-color: var(--mainColor);
 	border-radius: 2em;
 }
 
+ol {
+	list-style: none;
+	margin-bottom: 5%;
+
+}
+
+progress + ol {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+progress + ol li {
+	flex-basis: 25%;
+  position: relative;
+	color: black;
+}
+
+progress + ol li:before {
+	position: absolute;
+  z-index: 1;
+  font-family: Fontawesome;
+  font-size: 0.8em;
+  content: '';
+  color: black;
+	bottom: 2.8em;
+	left: 0.75em;
+}
+
+progress + ol li:after {
+  content: '';
+	position: absolute;
+	bottom: 1.6em;
+	left: 0%;
+  width: 2em;
+  height: 2em;
+  background: white;
+  border-radius: 100%;
+}
+
+progress + ol li:first-of-type:after {
+  background: var(--mainColor);
+}
+
+/* chat */
 section:nth-of-type(4){
 	background-color: var(--backgroundColor);
 }
@@ -400,20 +473,20 @@ article nav h1 {
 	color: white;
 }
 
-nav ol {
+section + section > nav ol {
 	list-style: none;
 	display: flex;
 	flex-direction: row;
 	width: 90%;
 }
 
-nav ol li {
+section + section > nav ol li {
 	flex-basis: 25%;
 	text-align: center;
 	color: white;
 }
 
-nav ol li a {
+section + section > nav ol li a {
 	color: white;
 }
 
@@ -451,8 +524,8 @@ section > ol li > p {
 	padding: 10%;
 	background-color: white;
 	order: 1;
-	border-top-left-radius: 0px;
-	box-shadow: -1px 2px 0px #D4D4D4;
+	border-top-left-radius: 0;
+	box-shadow: 0.0625em 0.125em 0 #D4D4D4;
 }
 
 section > ol li > p {
@@ -485,7 +558,21 @@ section > ol li:nth-child(even) footer {
 	text-align: left;
 }
 
-button {
+textarea {
+	margin: 5% 0;
+	padding: 10%;
+	width: 80%;
+	height: 2.5em;
+	border: none;
+	border-radius: 0.375em;
+	box-shadow: 0.0625em 0.125em 0 #D4D4D4;
+}
+
+textarea:focus {
+	background-color: white;
+}
+
+button[type='submit'] {
 
 }
 
@@ -521,3 +608,18 @@ button {
 }
 
 /* rating page */
+
+/* keyframes */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
