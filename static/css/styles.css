@@ -163,6 +163,10 @@ a {
 	color: black;
 }
 
+a:focus, a:hover {
+	text-decoration: underline;
+}
+
 header nav a {
 	font-family: monospace;
 	font-size: 1.2em;
@@ -171,6 +175,10 @@ header nav a {
 	display: block;
   width: 100%;
   height: 100%;
+}
+
+header nav a:focus, header nav a:hover {
+	text-decoration: none;
 }
 
 header nav li:hover a, header nav li:focus-within a {
@@ -575,10 +583,37 @@ textarea {
 
 textarea:focus {
 	background-color: white;
+	transform: scale(1.01, 1.01);
+	animation: borderColor 1s infinite;
+	border: 1px solid black;
+	/* transform: scale(1.01, 1.01);
+	transition: box-shadow 2s ease-in; */
 }
 
-button[type='submit'] {
+/* textarea:focus {
+	padding: 3%;
+	font-size: 1.5em;
+	position: fixed;
+	width: 50vw;
+	height: 20vw;
+	top: 15%; left: 12vw;
+	margin: 5em;
+	z-index: 5;
+	box-shadow: 0 0 0 100vmax rgba(0,0,0,.8);
+} */
 
+button[type='submit'] {
+	display: block;
+	width: 100%;
+	height: 3em;
+	border: none;
+	margin-top: 10%;
+	color: white;
+	background-color: rgba(0,0,0,0.8);
+}
+
+button[type='submit']:focus {
+	background-color: var(--mainColor);
 }
 
 /* two column layout  */
@@ -613,11 +648,71 @@ button[type='submit'] {
 }
 
 /* rating page */
+fieldset {
+	border: none;
+	background-color: #fbfbfb;
+	width: 100%;
+}
+
+fieldset legend {
+	width: 100%;
+	text-align: center;
+	font-size: 2em;
+}
+
+fieldset label, fieldset input {
+	display: inline;
+}
+
+fieldset input {
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+fieldset input:focus + label svg, fieldset input:hover + label svg {
+	animation: shake 1s infinite;
+}
+
+fieldset input:focus + label {
+	border-bottom: none !important;
+}
+
+fieldset label {
+	position: relative;
+	color: transparent;
+}
+
+svg {
+	width: 15%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	margin-left: 2%;
+}
+
+label:nth-of-type(1) svg g > g:nth-of-type(3) > g:first-of-type path {
+	fill: black;
+}
+
+label:nth-of-type(2) svg g > g:nth-of-type(3) > g:first-of-type path {
+	fill: saddlebrown;
+}
+
+label:nth-of-type(3) svg g > g:nth-of-type(3) > g:first-of-type path {
+	fill: khaki;
+}
+
+label:nth-of-type(3) svg g > g:nth-of-type(3) > g:last-of-type path, label:nth-of-type(2) svg g > g:nth-of-type(3) > g:last-of-type path {
+	fill: black;
+}
 
 /* login page */
 section > section {
 	padding: 5%;
 	background-color: #fbfbfb;
+	margin-left: 20% !important;
 }
 
 section > section h2 {
@@ -637,7 +732,7 @@ input {
 	font-size: 1.25em;
   transition:all .2s;
 	border: none;
-	border-bottom: 1px solid black;
+	border-bottom: 2px solid black;
 }
 
 input:valid {
@@ -651,36 +746,31 @@ input:invalid {
 }
 
 input:focus {
-	border: 1px solid black;
-	background-color: white;
-  transform: scale(1.01, 1.01);
+	animation: borderColorBottom 1s infinite;
 }
 
-input:last-of-type {
+form input:last-of-type {
 	margin: 0;
 	display: inline;
 	width: auto;
+	margin-right: 2%;
 }
 
-label:last-of-type {
+form label:last-of-type {
 	display: inline;
 	width: auto;
 }
 
-input:last-of-type:focus{
-	transform: translatex(5px);
-}
-
-input:focus + label {
+input:last-of-type:focus + label {
 	font-weight: bold;
-	display: inline-block;
-	transform: translatex(10px);
+	border-bottom: 1px solid black;
 }
 
 label + a {
 	display: inline;
 	width: 40%;
 	float: right;
+	text-align: right;
 }
 
 label + a:focus {
@@ -698,7 +788,9 @@ a + button {
 }
 
 a + button:focus {
-	background-color: var(--mainColor);
+	animation: borderColor 1s infinite;
+	color: black;
+	background-color: #fbfbfb !important;
 }
 
 @media screen and (min-width: 50em) {
@@ -723,4 +815,40 @@ a + button:focus {
     80% { transform: translate(-1px, -1px) rotate(1deg); }
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes borderColor {
+  0% {
+    border: 2px solid red;
+  }
+  25% {
+    border: 2px solid blue;
+  }
+	50% {
+		border: 2px solid yellow;
+	}
+	75% {
+		border: 2px solid green;
+	}
+  100% {
+    border: 2px solid purple;
+  }
+}
+
+@keyframes borderColorBottom {
+  0% {
+    border-bottom: 2px solid red;
+  }
+  25% {
+    border-bottom: 2px solid blue;
+  }
+	50% {
+		border-bottom: 2px solid yellow;
+	}
+	75% {
+		border-bottom: 2px solid green;
+	}
+  100% {
+    border-bottom: 2px solid purple;
+  }
 }
