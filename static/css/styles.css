@@ -676,6 +676,15 @@ fieldset input:focus + label svg, fieldset input:hover + label svg {
 	animation: shake 1s infinite;
 }
 
+label:last-of-type svg g > g:nth-of-type(3) path {
+	/* transition: transform .1s ease-in; */
+}
+
+input:last-of-type:focus + label svg g > g:nth-of-type(3) path, input:last-of-type:hover + label svg g > g:nth-of-type(3) path {
+	transform: scaleY(1.4);
+	transform-origin: left 400px;
+}
+
 fieldset input:focus + label {
 	border-bottom: none !important;
 }
@@ -686,10 +695,9 @@ fieldset label {
 }
 
 svg {
-	width: 15%;
 	margin-top: 5%;
 	margin-bottom: 5%;
-	margin-left: 2%;
+	margin-left: 5%;
 }
 
 label:nth-of-type(1) svg g > g:nth-of-type(3) > g:first-of-type path {
@@ -707,6 +715,8 @@ label:nth-of-type(3) svg g > g:nth-of-type(3) > g:first-of-type path {
 label:nth-of-type(3) svg g > g:nth-of-type(3) > g:last-of-type path, label:nth-of-type(2) svg g > g:nth-of-type(3) > g:last-of-type path {
 	fill: black;
 }
+
+
 
 /* login page */
 section > section {
