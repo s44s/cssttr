@@ -697,7 +697,12 @@ fieldset label {
 svg {
 	margin-top: 5%;
 	margin-bottom: 5%;
-	margin-left: 5%;
+	margin-left: 25%;
+	width: 50%;
+}
+
+label:first-of-type svg {
+	margin-left: 15%;
 }
 
 label:nth-of-type(1) svg g > g:nth-of-type(3) > g:first-of-type path {
@@ -716,7 +721,16 @@ label:nth-of-type(3) svg g > g:nth-of-type(3) > g:last-of-type path, label:nth-o
 	fill: black;
 }
 
+@media screen and (min-width: 50em) {
+	svg {
+		margin-left:5%;
+    width: 10%;
+	}
 
+	label:first-of-type svg {
+		margin-left: 10%;
+	}
+}
 
 /* login page */
 section > section {
