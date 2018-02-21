@@ -225,7 +225,7 @@ header nav li:hover a, header nav li:focus-within a {
 }
 
 /* dropdown menu */
-header nav a[href='blog.html']:after {
+header nav a[href='blog.html']::after {
 	position: relative;
 	left: 4em;
 	content: "\f078";
@@ -467,7 +467,7 @@ progress + ol li:after {
   border-radius: 100%;
 }
 
-progress + ol li:first-of-type:after {
+progress + ol li:first-of-type::after {
   background: var(--mainColor);
 }
 
@@ -547,7 +547,7 @@ section > ol li > p {
   position: relative;
 }
 
-section > ol li:nth-child(odd) > p:after {
+section > ol li:nth-child(odd) > p::after {
   content: "";
   position:absolute;
   margin-top:-0.375em;
@@ -678,6 +678,28 @@ fieldset input:focus + label svg, fieldset input:hover + label svg {
 
 label:last-of-type svg g > g:nth-of-type(3) path {
 	/* transition: transform .1s ease-in; */
+}
+
+input:nth-of-type(1):focus + label svg g > g:nth-of-type(3) path, input:nth-of-type(1):hover + label svg g > g:nth-of-type(3) path {
+	transform: scaleY(0.5);
+	transform-origin: left 400px;
+}
+
+input:nth-of-type(2):focus + label svg g > g:nth-of-type(3) path, input:nth-of-type(2):hover + label svg g > g:nth-of-type(3) path {
+	transform: scaleY(0.8);
+	transform-origin: left 400px;
+}
+
+label svg g > g:nth-of-type(2), input:nth-of-type(3):hover + label svg g > g:nth-of-type(2) {
+	visibility: visible;
+	opacity: 1;
+	transition: visibility 0s linear 0s, opacity 1s;
+}
+
+input:nth-of-type(3):focus + label svg g > g:nth-of-type(2), input:nth-of-type(3):hover + label svg g > g:nth-of-type(2) {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s linear 300ms, opacity 1s;
 }
 
 input:last-of-type:focus + label svg g > g:nth-of-type(3) path, input:last-of-type:hover + label svg g > g:nth-of-type(3) path {
