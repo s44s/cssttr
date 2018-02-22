@@ -312,7 +312,7 @@ video {
 	}
 
 	video{
-		width: 65vw;
+		width: 65vw; /*min-content */
 		margin-left: 0;
 	}
 }
@@ -473,8 +473,11 @@ progress + ol li:first-of-type::after {
 
 /* chat */
 section:nth-of-type(4){
-	background-color: var(--backgroundColor);
-}
+	background-color: #fff;
+	background-image:
+	linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+	linear-gradient(#eee .1em, transparent .1em);
+	background-size: 100% 1.2em;}
 
 article nav {
 	background-color: var(--secondColor);
@@ -579,13 +582,14 @@ textarea {
 	border: none;
 	border-radius: 0.375em;
 	box-shadow: 0.0625em 0.125em 0 #D4D4D4;
+	cursor: text;
 }
 
 textarea:focus {
 	background-color: white;
 	transform: scale(1.01, 1.01);
 	animation: borderColor 1s infinite;
-	border: 1px solid black;
+	border: 0.0625em solid black;
 	/* transform: scale(1.01, 1.01);
 	transition: box-shadow 2s ease-in; */
 }
@@ -601,6 +605,20 @@ textarea:focus {
 	z-index: 5;
 	box-shadow: 0 0 0 100vmax rgba(0,0,0,.8);
 } */
+
+button {
+	cursor: pointer;
+	position: relative;
+}
+
+button::before {
+	content: '';
+	position: absolute;
+	top: 0.625em;
+	right: 0.625em;
+	bottom: 0.625em;
+	left: 0.625em;
+}
 
 button[type='submit'] {
 	display: block;
@@ -635,6 +653,7 @@ button[type='submit']:focus {
 	.two-column-layout + body main section:nth-of-type(4) {
 		grid-column: 4 / 5;
 		grid-row: 1 / 2;
+		background-color: #fff;
 		background-image: url('../img/skyscraper.png');
 
 	}
@@ -682,12 +701,12 @@ label:last-of-type svg g > g:nth-of-type(3) path {
 
 input:nth-of-type(1):focus + label svg g > g:nth-of-type(3) path, input:nth-of-type(1):hover + label svg g > g:nth-of-type(3) path {
 	transform: scaleY(0.5);
-	transform-origin: left 400px;
+	transform-origin: left 25em;
 }
 
 input:nth-of-type(2):focus + label svg g > g:nth-of-type(3) path, input:nth-of-type(2):hover + label svg g > g:nth-of-type(3) path {
 	transform: scaleY(0.8);
-	transform-origin: left 400px;
+	transform-origin: left 25em;
 }
 
 label svg g > g:nth-of-type(2), input:nth-of-type(3):hover + label svg g > g:nth-of-type(2) {
@@ -704,7 +723,7 @@ input:nth-of-type(3):focus + label svg g > g:nth-of-type(2), input:nth-of-type(3
 
 input:last-of-type:focus + label svg g > g:nth-of-type(3) path, input:last-of-type:hover + label svg g > g:nth-of-type(3) path {
 	transform: scaleY(1.4);
-	transform-origin: left 400px;
+	transform-origin: left 25em;
 }
 
 fieldset input:focus + label {
@@ -758,7 +777,6 @@ label:nth-of-type(3) svg g > g:nth-of-type(3) > g:last-of-type path, label:nth-o
 section > section {
 	padding: 5%;
 	background-color: #fbfbfb;
-	margin-left: 20% !important;
 }
 
 section > section h2 {
@@ -778,7 +796,7 @@ input {
 	font-size: 1.25em;
   transition:all .2s;
 	border: none;
-	border-bottom: 2px solid black;
+	border-bottom: 0.125em solid black;
 }
 
 input:valid {
@@ -795,13 +813,6 @@ input:focus {
 	animation: borderColorBottom 1s infinite;
 }
 
-form input:last-of-type {
-	margin: 0;
-	display: inline;
-	width: auto;
-	margin-right: 2%;
-}
-
 form label:last-of-type {
 	display: inline;
 	width: auto;
@@ -809,8 +820,32 @@ form label:last-of-type {
 
 input:last-of-type:focus + label {
 	font-weight: bold;
-	border-bottom: 1px solid black;
+	border-bottom: 0.0625em solid black;
 }
+
+input[type="checkbox"] {
+	position: absolute;
+	clip: rect(0,0,0,0);
+}
+
+input[type="checkbox"] + label::before {
+	content: '\a0';
+	display: inline-block;
+	vertical-align: .2em;
+	width: .8em;
+	height: .8em;
+	margin-right: 2%;
+	border: 0.0625em solid black;
+	background: white;
+	text-indent: .15em;
+	line-height: .65;
+}
+
+input[type="checkbox"]:checked + label::before {
+	content: '\2713';
+	background: #fbfbfb;
+}
+
 
 label + a {
 	display: inline;
@@ -842,7 +877,7 @@ a + button:focus {
 @media screen and (min-width: 50em) {
 	section > section {
 		width: 50%;
-		margin-left: 25%;
+		margin-left: 20%;
 	}
 }
 
@@ -850,51 +885,51 @@ a + button:focus {
 
 /* keyframes */
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+    0% { transform: translate(0.0625em, 0.0625em) rotate(0deg); }
+    10% { transform: translate(-0.0625em, -0.125em) rotate(-1deg); }
+    20% { transform: translate(-0.1875em, 0) rotate(1deg); }
+    30% { transform: translate(0.1875em, 0.125em) rotate(0deg); }
+    40% { transform: translate(0.0625em, -0.0625em) rotate(1deg); }
+    50% { transform: translate(-0.0625em, 0.125em) rotate(-1deg); }
+    60% { transform: translate(-0.1875em, 0.0625em) rotate(0deg); }
+    70% { transform: translate(0.1875em, 0.0625em) rotate(-1deg); }
+    80% { transform: translate(-0.0625em, -0.0625em) rotate(1deg); }
+    90% { transform: translate(0.0625em, 0.125em) rotate(0deg); }
+    100% { transform: translate(0.0625em, -0.125em) rotate(-1deg); }
 }
 
 @keyframes borderColor {
   0% {
-    border: 2px solid red;
+    border: 0.125em solid red;
   }
   25% {
-    border: 2px solid blue;
+    border: 0.125em solid blue;
   }
 	50% {
-		border: 2px solid yellow;
+		border: 0.125em solid yellow;
 	}
 	75% {
-		border: 2px solid green;
+		border: 0.125em solid green;
 	}
   100% {
-    border: 2px solid purple;
+    border: 0.125em solid purple;
   }
 }
 
 @keyframes borderColorBottom {
   0% {
-    border-bottom: 2px solid red;
+    border-bottom: 0.125em solid red;
   }
   25% {
-    border-bottom: 2px solid blue;
+    border-bottom: 0.125em solid blue;
   }
 	50% {
-		border-bottom: 2px solid yellow;
+		border-bottom: 0.125em solid yellow;
 	}
 	75% {
-		border-bottom: 2px solid green;
+		border-bottom: 0.125em solid green;
 	}
   100% {
-    border-bottom: 2px solid purple;
+    border-bottom: 0.125em solid purple;
   }
 }
